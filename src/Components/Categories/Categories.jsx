@@ -62,10 +62,10 @@ export default ({ categoryName }) => {
     };
 
     useEffect(() => {
-        fetch(BASE_URL + "products/")
+        fetch(BASE_URL + "products")
             .then((res) => res.json())
             .then((data) => {
-                setData(data);
+                setData(data.products);
                 setCategory(categoryName);
                 setIsLoading(false);
             })
@@ -74,7 +74,7 @@ export default ({ categoryName }) => {
             });
     }, []);
 
-    const categoryProducts = data.filter((product) => product.category.name === category);
+    const categoryProducts = data.filter((product) => product.category === category);
 
     return (
         <div className="px-28 mt-5 ">
@@ -88,7 +88,6 @@ export default ({ categoryName }) => {
                 <Swiper
                     cssMode={true}
                     navigation={true}
-                    // pagination={true}
                     mousewheel={true}
                     keyboard={true}
                     modules={[Navigation, Pagination, Mousewheel, Keyboard]}
@@ -105,7 +104,7 @@ export default ({ categoryName }) => {
                                         <Link to={"/single/" + element.id}>
                                             <img
                                                 className="rounded w-48 h-60 p-0"
-                                                src={element.images}
+                                                src={element.images[0]}
                                                 alt="img"
                                             />
                                         </Link>

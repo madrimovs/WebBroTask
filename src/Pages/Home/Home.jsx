@@ -10,22 +10,22 @@ import CoruselSlider from "../../Components/CoruselSlider/CoruselSlider";
 import PromotionWeek from "../../Components/PromotionWeek/PromotionWeek";
 
 const Home = () => {
-	return (
-		<Layout>
-			<CoruselSlider />
-			<PromotionWeek />
-			<Categories categoryName={"Electronics"} />
-			<Advertising image={advertising} />
-			<Categories categoryName={"Shoes"} />
-			<Categories categoryName={"Furniture"} />
-			<Advertising image={advertising_2} />
-			<Categories categoryName={"nuevo"} />
-			<Categories categoryName={"Others"} />
-			<Advertising image={advertising_3} />
+    return (
+        <Layout>
+            <CoruselSlider />
+            <PromotionWeek />
+            <Categories categoryName={"groceries"} />
+            <Advertising image={advertising} />
+            <Categories categoryName={"smartphones"} />
+            <Categories categoryName={"laptops"} />
+            <Advertising image={advertising_2} />
+            <Categories categoryName={"skincare"} />
+            <Categories categoryName={"home-decoration"} />
+            <Advertising image={advertising_3} />
 
-			<PromotionWeek />
-		</Layout>
-	);
+            <PromotionWeek />
+        </Layout>
+    );
 };
 
 export default Home;

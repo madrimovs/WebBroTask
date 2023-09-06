@@ -8,47 +8,48 @@ import CategoryBarLoading from "../../Loading/CategoryBarLoading/CategoryBarLoad
 import { setCategory } from "../../../Redux/slicers/categorySliser";
 
 const CategoryBar = () => {
-	const [data, setData] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-	const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-	const handleCategoryChange = (event) => {
-		dispatch(setCategory(event.target.innerText));
-	};
+    const handleCategoryChange = (event) => {
+        dispatch(setCategory(event.target.innerText));
+    };
 
-	useEffect(() => {
-		fetch(BASE_URL + "categories")
-			.then((res) => res.json())
-			.then((data) => {
-				setData(data);
-				isLoading(false);
-			})
-			.catch((err) => {
-				setIsLoading(false);
-			});
-	}, []);
+    useEffect(() => {
+        fetch(BASE_URL + "products")
+            .then((res) => res.json())
+            .then((data) => {
+                setData(data.products);
+                isLoading(false);
+                console.log(data);
+            })
+            .catch((err) => {
+                setIsLoading(false);
+            });
+    }, []);
 
-	return (
-		<>
-			{isLoading ? (
-				<CategoryBarLoading />
-			) : (
-				<div className="flex gap-3 justify-between text-xs text-zinc-600 px-28">
-					{data.map((element) => (
-						<Link key={element.id} to="/category">
-							<p
-								onClick={handleCategoryChange}
-								className="cursor-pointer hover:text-black hover:underline"
-							>
-								{element.name}
-							</p>
-						</Link>
-					))}
-				</div>
-			)}
-		</>
-	);
+    return (
+        <>
+            {isLoading ? (
+                <CategoryBarLoading />
+            ) : (
+                <div className="flex gap-3 justify-between text-xs text-zinc-600 px-28">
+                    {data.slice(0,8).map((element) => (
+                        <Link key={element.id} to="/category">
+                            <p
+                                onClick={handleCategoryChange}
+                                className="cursor-pointer hover:text-black hover:underline"
+                            >
+                                {element.category}
+                            </p>
+                        </Link>
+                    ))}
+                </div>
+            )}
+        </>
+    );
 };
 
 export default CategoryBar;
